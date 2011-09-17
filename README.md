@@ -7,14 +7,12 @@ Goal :)
         <groupId>dk.mwl.maven.startable</groupId>
         <artifactId>maven-startable-plugin</artifactId>
         <version>1.0</version>
-        <configuration>
-            <class>org.subethamail.wiser.Wiser</class>
-        </configuration>
         <executions>
             <execution>
                 <id>start-wiser</id>
                 <phase>pre-integration-test</phase>
                 <goals>
+                    <class>org.subethamail.wiser.Wiser</class>
                     <goal>start</goal>
                 </goals>
             </execution>
@@ -33,6 +31,7 @@ Goal :)
                 </goals>
                 <configuration>
                     <method>start</method>
+                    <class>org.subethamail.wiser.Wiser</class>
                     <args>
                         <arg>2525</arg>
                     </args>

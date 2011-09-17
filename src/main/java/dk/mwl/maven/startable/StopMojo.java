@@ -5,6 +5,10 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 public class StopMojo extends AbstractMojo{
+    /**
+     *
+     * @goal stop
+     */
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().debug("Stopping");
     }
