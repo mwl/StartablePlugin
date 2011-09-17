@@ -1,0 +1,50 @@
+Maven Startable Plugin
+----------------------
+
+Goal :)
+
+    <plugin>
+        <groupId>dk.mwl.maven.startable</groupId>
+        <artifactId>maven-startable-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+            <class>org.subethamail.wiser.Wiser</class>
+        </configuration>
+        <executions>
+            <execution>
+                <id>start-wiser</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>start</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>stop-wiser</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                    <goal>stop</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>start-wiser2525</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>start</goal>
+                </goals>
+                <configuration>
+                    <method>start</method>
+                    <args>
+                        <arg>2525</arg>
+                    </args>
+                    <daemon>true</daemon>
+                </configuration>
+            </execution>
+            <execution>
+                <id>stop-wiser2525</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                    <goal>stop</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
