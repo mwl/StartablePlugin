@@ -7,7 +7,7 @@ public class LauncherImpl implements Launcher {
     private volatile static Launcher instance;
     private final Map<String, Object> launcherMap = new HashMap<String, Object>();
 
-    private LauncherImpl() {
+    LauncherImpl() {
     }
 
     public static Launcher getInstance() {
@@ -17,7 +17,7 @@ public class LauncherImpl implements Launcher {
         return instance;
     }
 
-    public void start() {
+    public void start(String id, String startableClass, String startMethod) {
     }
 
     public void stop() {

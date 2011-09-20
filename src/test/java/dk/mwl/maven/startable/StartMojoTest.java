@@ -12,6 +12,6 @@ public class StartMojoTest {
     public void willCallLauncher() throws Exception {
         mojo = new StartMojo(launcher, "start", null, null, null);
         mojo.execute();
-        verify(launcher).start();
+        verify(launcher).start("ID", startableClass, startMethod);
     }
 }

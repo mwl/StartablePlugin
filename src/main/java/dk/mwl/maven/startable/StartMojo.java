@@ -11,21 +11,11 @@ public class StartMojo extends AbstractMojo {
     private Launcher launcer;
 
     /**
-     * @parameter
-     */
-    private String initMethod;
-
-    /**
      * Factory class
      *
      * @parameter
      */
     private String startableClass;
-
-    /**
-     * @parameter
-     */
-    private String[] parameters;
 
     /**
      * @parameter default-value="start"
@@ -37,11 +27,9 @@ public class StartMojo extends AbstractMojo {
         this.launcer = LauncherImpl.getInstance();
     }
 
-    public StartMojo(Launcher launcer, String initMethod, String startableClass, String[] parameters, String startMethod) {
+    public StartMojo(Launcher launcer, String startableClass, String startMethod) {
         this.launcer = launcer;
-        this.initMethod = initMethod;
         this.startableClass = startableClass;
-        this.parameters = parameters;
         this.startMethod = startMethod;
     }
 
@@ -50,12 +38,6 @@ public class StartMojo extends AbstractMojo {
      */
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().debug("Starting");
-        launcer.start();
+        launcer.start("ID", startableClass, startMethod);
     }
-
-    private boolean notSet(String s) {
-        return s == null || s.equals("");
-    }
-
-    
 }
