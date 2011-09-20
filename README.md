@@ -11,32 +11,36 @@ Usage goal :)
             <execution>
                 <!--
                     This will result in
-                    Object startable = new org.subethamail.wiser.Wiser()
-                    startable.start()
+                    startables["foo"] = new dk.mwl.Foo()
+                    startables["foo"].start()
                  -->
-                <id>start-wiser</id>
+                <id>start-foo</id>
                 <phase>pre-integration-test</phase>
                 <goals>
-                    <class>org.subethamail.wiser.Wiser</class>
                     <goal>start</goal>
                 </goals>
+                <configuration>
+                    <class>dk.mwl.Foo</class>
+                </configuration>
             </execution>
+
             <execution>
                 <!--
                     This will result in
-                    startable.stop()
+                    startables["foo"].stop()
                  -->
-                <id>stop-wiser</id>
+                <id>stop-foo</id>
                 <phase>post-integration-test</phase>
                 <goals>
                     <goal>stop</goal>
                 </goals>
             </execution>
+
             <execution>
                 <!--
                     This will result in
-                    Object startable = new org.subethamail.wiser.Wiser(2525)
-                    startable.start()
+                    startables["foo2525"] = new dk.mwl.Far(2525)
+                    startables["foo"].start()
                  -->
                 <id>start-wiser2525</id>
                 <phase>pre-integration-test</phase>
@@ -45,25 +49,70 @@ Usage goal :)
                 </goals>
                 <configuration>
                     <method>start</method>
-                    <class>org.subethamail.wiser.Wiser</class>
+                    <class>dk.mwl.Foo</class>
                     <constructorArgs>
                         <arg>2525</arg>
                     </constructorArgs>
-                    <daemon>true</daemon>
                 </configuration>
             </execution>
+
             <execution>
                 <!--
                     This will result in
-                    startable.stop()
+                    startables["foo"].kill()
                  -->
-                <id>stop-wiser2525</id>
+                <id>stop-foo2525</id>
                 <phase>post-integration-test</phase>
                 <goals>
                     <goal>stop</goal>
                 </goals>
                 <configuration>
-                    <method>stop</method>
+                    <method>kill</method>
+                </configuration>
+            </execution>
+
+            <execution>
+                <execution>
+                <!--
+                    This will result in
+                    startables["bar"] = dk.mwl.Bar.create(true)
+                    startables["bar"].boot(2525)
+                 -->
+                <id>start-bar</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>start</goal>
+                </goals>
+                <configuration>
+                    <class>dk.mwl.Bar</class>
+                    <factoryMethod>create</factoryMethod>
+                    <method>boot</method>
+                    <constructorArgs>
+                        <arg>true</arg>
+                    </constructorArgs>
+                    <args>
+                        <arg>2525</arg>
+                    </args>
+                </configuration>
+            </execution>
+
+            <execution>
+                <!--
+                    This will result in
+                    dk.mwl.Bar.killAll(false, 9)
+                 -->
+                <id>stop-bar</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                    <goal>stop</goal>
+                </goals>
+                <configuration>
+                    <class>dk.mwl.Bar</method>
+                    <method>killAll</method>
+                    <args>
+                        <arg>false</arg>
+                        <arg>9</arg>
+                    </args>
                 </configuration>
             </execution>
         </executions>
