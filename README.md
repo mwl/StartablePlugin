@@ -1,7 +1,7 @@
 Maven Startable Plugin
 ----------------------
 
-Goal :)
+Usage goal :)
 
     <plugin>
         <groupId>dk.mwl.maven.startable</groupId>
@@ -9,6 +9,11 @@ Goal :)
         <version>1.0</version>
         <executions>
             <execution>
+                <!--
+                    This will result in
+                    Object startable = new org.subethamail.wiser.Wiser()
+                    startable.start()
+                 -->
                 <id>start-wiser</id>
                 <phase>pre-integration-test</phase>
                 <goals>
@@ -17,6 +22,10 @@ Goal :)
                 </goals>
             </execution>
             <execution>
+                <!--
+                    This will result in
+                    startable.stop()
+                 -->
                 <id>stop-wiser</id>
                 <phase>post-integration-test</phase>
                 <goals>
@@ -24,6 +33,11 @@ Goal :)
                 </goals>
             </execution>
             <execution>
+                <!--
+                    This will result in
+                    Object startable = new org.subethamail.wiser.Wiser(2525)
+                    startable.start()
+                 -->
                 <id>start-wiser2525</id>
                 <phase>pre-integration-test</phase>
                 <goals>
@@ -32,18 +46,25 @@ Goal :)
                 <configuration>
                     <method>start</method>
                     <class>org.subethamail.wiser.Wiser</class>
-                    <args>
+                    <constructorArgs>
                         <arg>2525</arg>
-                    </args>
+                    </constructorArgs>
                     <daemon>true</daemon>
                 </configuration>
             </execution>
             <execution>
+                <!--
+                    This will result in
+                    startable.stop()
+                 -->
                 <id>stop-wiser2525</id>
                 <phase>post-integration-test</phase>
                 <goals>
                     <goal>stop</goal>
                 </goals>
+                <configuration>
+                    <method>stop</method>
+                </configuration>
             </execution>
         </executions>
     </plugin>
